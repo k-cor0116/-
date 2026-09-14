@@ -110,6 +110,9 @@
   <label><input type="radio" name="callback" value="未確認" checked> 未確認</label>
 </fieldset>
 
+<label for="receiver">受けた人</label>
+<input type="text" id="receiver" placeholder="例：鈴木">
+
 <button id="makeBtn">メモを作る</button>
 
 <div id="resultArea" style="display:none;">
@@ -126,6 +129,7 @@ document.getElementById('makeBtn').addEventListener('click', function () {
   var business = document.getElementById('business').value.trim();
   var callbackRadio = document.querySelector('input[name="callback"]:checked');
   var callback = callbackRadio ? callbackRadio.value : '未確認';
+  var receiver = document.getElementById('receiver').value.trim();
 
   var now = new Date();
   var weekdays = ['日', '月', '火', '水', '木', '金', '土'];
@@ -144,6 +148,7 @@ document.getElementById('makeBtn').addEventListener('click', function () {
   lines.push('お名前：' + (name || '（未入力）'));
   lines.push('ご用件：' + (business || '（未入力）'));
   lines.push('折り返し：' + callback);
+  lines.push('（受けた人：' + (receiver || '（未入力）') + '）');
 
   var text = lines.join('\n');
 
